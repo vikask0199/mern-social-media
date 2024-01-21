@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root {
+    --bg-color: #fff;
+    --text-color: #333;
+    --button-bg-color: #007bff;
+    --button-text-color: #fff;
+    --button-hover-bg-color: #5cb85c;
+}
+
+/* Theme 1 - Yellow/Green */
+.theme1 {
+    --bg-color: #ffeb3b;
+    --text-color: #4caf50;
+    --button-bg-color: #4caf50;
+    --button-text-color: #fff;
+    --button-hover-bg-color: #8bc34a;
+}
+
+/* Theme 2 - Purple/Yellow */
+.theme2 {
+    --bg-color: #9c27b0;
+    --text-color: #f9ca24;
+    --button-bg-color: #f9ca24;
+    --button-text-color: #fff;
+    --button-hover-bg-color: #673ab7;
+}
+
+/* Theme 3 - Blue/Orange */
+.theme3 {
+    --bg-color: #2196f3;
+    --text-color: #ff9800;
+    --button-bg-color: #ff9800;
+    --button-text-color: #fff;
+    --button-hover-bg-color: #03a9f4;
+}
+
+/* Theme 4 - Teal/Indigo */
+.theme4 {
+    --bg-color: #009688;
+    --text-color: #3f51b5;
+    --button-bg-color: #3f51b5;
+    --button-text-color: #fff;
+    --button-hover-bg-color: #00bcd4;
+}
+
+/* Theme 5 - Red/Deep Purple */
+.theme5 {
+    --bg-color: #f44336;
+    --text-color: #673ab7;
+    --button-bg-color: #673ab7;
+    --button-text-color: #fff;
+    --button-hover-bg-color: #e91e63;
+}
+
+/* Light Theme */
+.light {
+    --bg-color: #fff;
+    --text-color: #333;
+    --button-bg-color: #007bff;
+    --button-text-color: #fff;
+    --button-hover-bg-color: #5cb85c;
+}
+
+/* Dark Theme */
+.dark {
+    --bg-color: #333;
+    --text-color: #fff;
+    --button-bg-color: #555;
+    --button-text-color: #fff;
+    --button-hover-bg-color: #777;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.App {
+    transition: background-color 0.3s, color 0.3s;
+}
+
+button {
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+button:hover {
+    background-color: var(--button-hover-bg-color);
+    color: var(--button-text-hover-color, var(--button-text-color));
+}
+
+
+button.secondary {
+    background-color: #ffffff;
+    color: var(--button-bg-color);
+    border: 1px solid var(--button-bg-color);
+}
+
+button.secondary:hover {
+    background-color: var(--button-bg-color);
+    color: #ffffff;
+}
