@@ -1,29 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { FaAffiliatetheme } from "react-icons/fa";
+import { MdDarkMode, MdOutlineComputer, MdOutlineLightMode } from "react-icons/md";
+import { RiMenu2Line } from "react-icons/ri";
+import { TfiClose } from "react-icons/tfi";
+
+
 
 const ThemeSelector = ({ setTheme }) => {
     const themes = ['theme1', 'theme2', 'theme3', 'theme4', 'theme5', 'light', 'dark', 'system'];
-    const [systemTheme, setSystemTheme] = useState('light');
     const [activeTheme, setActiveTheme] = useState(localStorage.getItem('theme') || 'system');
-
-    useEffect(() => {
-        const handleSystemThemeChange = (e) => {
-            setSystemTheme(e.matches ? 'dark' : 'light');
-        };
-
-        const systemThemeMatcher = window.matchMedia('(prefers-color-scheme: dark)');
-        systemThemeMatcher.addEventListener('change', handleSystemThemeChange);
-        handleSystemThemeChange(systemThemeMatcher);
-
-        return () => {
-            systemThemeMatcher.removeEventListener('change', handleSystemThemeChange);
-        };
-    }, []);
-
-    useEffect(() => {
-        const savedTheme = localStorage.getItem('theme');
-        setTheme(savedTheme || systemTheme);
-    }, [systemTheme, setTheme]);
-
 
     const handleThemeChange = (selectedTheme) => {
         if (selectedTheme === 'system') {
@@ -37,22 +22,36 @@ const ThemeSelector = ({ setTheme }) => {
             setTheme(selectedTheme);
             setActiveTheme(selectedTheme);
         }
-            console.log(localStorage.getItem('theme') , selectedTheme)
     };
 
+    const [isOpen, setIsOpen] = useState(false);
+    const toggleIcons = () => {
+        setIsOpen(!isOpen);
+    };
 
     return (
-        <div className="flex space-x-4">
-            {themes.map((theme) => (
-                <button
-                    key={theme}
-                    onClick={() => handleThemeChange(theme)}
-                    className={`px-4 py-2 rounded focus:outline-none ${activeTheme === theme ? 'bg-cyan-500 text-white' : 'bg-gray-200 text-black'
-                        }`}
-                >
-                    {theme}
-                </button>
-            ))}
+        <div className="flex items-center rounded-sm p-1 theme-border">
+            <button onClick={toggleIcons} className="outline-none h-10 w-10 flex items-center justify-center" >
+                {isOpen ? (
+                    <span className="text-lg"><TfiClose /></span>
+                ) : (
+                    <span className="text-lg"><RiMenu2Line /></span>
+                )}
+            </button>
+
+            {isOpen && (
+                <div className="flex transition-all duration-300">
+                    {themes.map((theme) => (
+                        <button
+                            key={theme}
+                            onClick={() => handleThemeChange(theme)}
+                            className={`h-10 w-10 flex items-center justify-center rounded-sm focus:outline-none ${activeTheme === theme ? 'bg-cyan-500 text-white' : ''}`}
+                        >
+                            {theme === 'theme1' ? <FaAffiliatetheme /> : theme === 'theme2' ? <FaAffiliatetheme /> : theme === 'theme3' ? <FaAffiliatetheme /> : theme === 'theme4' ? <MdDarkMode /> : theme === 'theme5' ? <FaAffiliatetheme /> : theme === 'light' ? <MdOutlineLightMode /> : theme === 'dark' ? <MdDarkMode /> : <MdOutlineComputer />}
+                        </button>
+                    ))}
+                </div>
+            )}
         </div>
     );
 };

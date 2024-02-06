@@ -1,0 +1,9 @@
+.popup-container {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease-out;
+}
+
+.popup-container.open {
+    max-height: 250px;
+}
